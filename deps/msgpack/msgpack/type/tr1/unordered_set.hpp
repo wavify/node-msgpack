@@ -29,7 +29,7 @@ namespace msgpack {
 
 
 template <typename T>
-inline std::unordered_set<T>& operator>> (object o, std::tr1::unordered_set<T>& v)
+inline std::unordered_set<T>& operator>> (object o, std::unordered_set<T>& v)
 {
 	if(o.type != type::ARRAY) { throw type_error(); }
 	object* p = o.via.array.ptr + o.via.array.size;
@@ -42,10 +42,10 @@ inline std::unordered_set<T>& operator>> (object o, std::tr1::unordered_set<T>& 
 }
 
 template <typename Stream, typename T>
-inline packer<Stream>& operator<< (packer<Stream>& o, const std::tr1::unordered_set<T>& v)
+inline packer<Stream>& operator<< (packer<Stream>& o, const std::unordered_set<T>& v)
 {
 	o.pack_array(v.size());
-	for(typename std::tr1::unordered_set<T>::const_iterator it(v.begin()), it_end(v.end());
+	for(typename std::unordered_set<T>::const_iterator it(v.begin()), it_end(v.end());
 			it != it_end; ++it) {
 		o.pack(*it);
 	}
@@ -53,7 +53,7 @@ inline packer<Stream>& operator<< (packer<Stream>& o, const std::tr1::unordered_
 }
 
 template <typename T>
-inline void operator<< (object::with_zone& o, const std::tr1::unordered_set<T>& v)
+inline void operator<< (object::with_zone& o, const std::unordered_set<T>& v)
 {
 	o.type = type::ARRAY;
 	if(v.empty()) {
@@ -64,7 +64,7 @@ inline void operator<< (object::with_zone& o, const std::tr1::unordered_set<T>& 
 		object* const pend = p + v.size();
 		o.via.array.ptr = p;
 		o.via.array.size = v.size();
-		typename std::tr1::unordered_set<T>::const_iterator it(v.begin());
+		typename std::unordered_set<T>::const_iterator it(v.begin());
 		do {
 			*p = object(*it, o.zone);
 			++p;
@@ -75,7 +75,7 @@ inline void operator<< (object::with_zone& o, const std::tr1::unordered_set<T>& 
 
 
 template <typename T>
-inline std::tr1::unordered_multiset<T>& operator>> (object o, std::tr1::unordered_multiset<T>& v)
+inline std::unordered_multiset<T>& operator>> (object o, std::unordered_multiset<T>& v)
 {
 	if(o.type != type::ARRAY) { throw type_error(); }
 	object* p = o.via.array.ptr + o.via.array.size;
@@ -88,10 +88,10 @@ inline std::tr1::unordered_multiset<T>& operator>> (object o, std::tr1::unordere
 }
 
 template <typename Stream, typename T>
-inline packer<Stream>& operator<< (packer<Stream>& o, const std::tr1::unordered_multiset<T>& v)
+inline packer<Stream>& operator<< (packer<Stream>& o, const std::unordered_multiset<T>& v)
 {
 	o.pack_array(v.size());
-	for(typename std::tr1::unordered_multiset<T>::const_iterator it(v.begin()), it_end(v.end());
+	for(typename std::unordered_multiset<T>::const_iterator it(v.begin()), it_end(v.end());
 			it != it_end; ++it) {
 		o.pack(*it);
 	}
@@ -99,7 +99,7 @@ inline packer<Stream>& operator<< (packer<Stream>& o, const std::tr1::unordered_
 }
 
 template <typename T>
-inline void operator<< (object::with_zone& o, const std::tr1::unordered_multiset<T>& v)
+inline void operator<< (object::with_zone& o, const std::unordered_multiset<T>& v)
 {
 	o.type = type::ARRAY;
 	if(v.empty()) {
@@ -110,7 +110,7 @@ inline void operator<< (object::with_zone& o, const std::tr1::unordered_multiset
 		object* const pend = p + v.size();
 		o.via.array.ptr = p;
 		o.via.array.size = v.size();
-		typename std::tr1::unordered_multiset<T>::const_iterator it(v.begin());
+		typename std::unordered_multiset<T>::const_iterator it(v.begin());
 		do {
 			*p = object(*it, o.zone);
 			++p;
