@@ -29,7 +29,7 @@ namespace msgpack {
 
 
 template <typename K, typename V>
-inline std::tr1::unordered_map<K, V> operator>> (object o, std::tr1::unordered_map<K, V>& v)
+inline std::unordered_map<K, V> operator>> (object o, std::tr1::unordered_map<K, V>& v)
 {
 	if(o.type != type::MAP) { throw type_error(); }
 	object_kv* p(o.via.map.ptr);
