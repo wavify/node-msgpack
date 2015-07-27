@@ -29,7 +29,7 @@ namespace msgpack {
 
 
 template <typename T>
-inline std::tr1::unordered_set<T>& operator>> (object o, std::tr1::unordered_set<T>& v)
+inline std::unordered_set<T>& operator>> (object o, std::tr1::unordered_set<T>& v)
 {
 	if(o.type != type::ARRAY) { throw type_error(); }
 	object* p = o.via.array.ptr + o.via.array.size;
